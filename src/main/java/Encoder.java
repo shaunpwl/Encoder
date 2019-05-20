@@ -2,15 +2,18 @@ import java.sql.Struct;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Encoder {
     public static void main(String[] args) {
-        encrypt(("SHAUN"));
+        System.out.println(encrypt(("HELLO WORLD")));
     }
 
     public static String encrypt(String plainText){
-        String offsetChar = "B";
-        int offsetCharKey = getKey(shiftTable, offsetChar);
+//        String offsetChar = "B";
+        int offsetCharKey = ThreadLocalRandom.current().nextInt(0, 44);
+        String offsetChar = shiftTable.get(offsetCharKey);
+//        int offsetCharKey = getKey(shiftTable, offsetChar);
         StringBuilder plainTextShifted = new StringBuilder();
         for (int i = 0; i < plainText.length();i++ ){
             if(String.valueOf(plainText.charAt(i)).equals(" "))
